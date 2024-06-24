@@ -74,6 +74,7 @@ const TimerMain = ({ setTime, currentSeconds, isRunning }: Props) => {
 const mainStyle = css({
   height: '85vh',
   textAlign: 'center',
+  background: 'white',
 });
 
 const titleStyle = css({
