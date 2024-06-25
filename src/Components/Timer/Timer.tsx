@@ -4,10 +4,11 @@ import { TimerHead, TimerMain } from '../index';
 import { bellPlay, timeStringToNumber } from '../utils';
 
 const Timer = () => {
+  const initialTime = 1200;
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [isNotify, setIsNotify] = useState<boolean>(false);
-  const [currentSeconds, setCurrentSeconds] = useState<number>(30);
-  const [bellTimes, setBellTimes] = useState<number[]>([...Array(5)].map(() => 0));
+  const [currentSeconds, setCurrentSeconds] = useState<number>(initialTime);
+  const [bellTimes, setBellTimes] = useState<number[]>([600, 300, 180, 60, 0]);
 
   useEffect(() => {
     const timerHandler = () => {
@@ -34,7 +35,7 @@ const Timer = () => {
   const pauseTimer = () => setIsRunning(false);
   const resetTimer = () => {
     setIsRunning(false);
-    setCurrentSeconds(0);
+    setCurrentSeconds(initialTime);
   };
 
   const setTime = (inputTime: string): void => {

@@ -10,7 +10,7 @@ interface Props {
 }
 
 const TimerMain = ({ setTime, currentSeconds, isRunning }: Props) => {
-  const [title, setTitle] = useState<string>('title');
+  const [title, setTitle] = useState<string>('KTC2024 Summer');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openInputModal = () => setIsModalOpen(true);
