@@ -67,32 +67,22 @@ const Timer = () => {
   );
 };
 
-const blink = keyframes`
-  0%, 50% {
-    opacity: 0.7;
-  }
-  25%,75% {
-    opacity: 0;
-  }
-`;
-const notifyStyle = css`
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: #000;
-  animation: ${blink} 0.6s step-end;
-`;
+const blink = keyframes({
+  '0%': { opacity: 0.8 },
+  '100%': { opacity: 0 },
+});
 
-// const notifyStyle = css({
-//   position: 'absolute',
-//   top: '0',
-//   right: '0',
-//   left: '0',
-//   bottom: '0',
-//   background: '#000',
-//   animation: {blink}
-// });
+const notifyStyle = css({
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  left: 0,
+  bottom: 0,
+  background: '#000',
+  animationName: blink,
+  animationDuration: '0.3s',
+  animationFillMode: 'forwards',
+  animationIterationCount: 2,
+});
 
 export default Timer;
