@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 interface Props {
   isRunning: boolean;
@@ -8,7 +8,13 @@ interface Props {
   resetTimer: () => void;
 }
 
-const TimerController = ({ isRunning, currentSeconds, startTimer, pauseTimer, resetTimer }: Props) => {
+const TimerController = ({
+  isRunning,
+  currentSeconds,
+  startTimer,
+  pauseTimer,
+  resetTimer,
+}: Props) => {
   return (
     <div css={controlAreaStyle}>
       {isRunning ? (
@@ -16,7 +22,11 @@ const TimerController = ({ isRunning, currentSeconds, startTimer, pauseTimer, re
           ❙❙ ポーズ
         </button>
       ) : (
-        <button onClick={startTimer} css={buttonStyle} disabled={currentSeconds === 0}>
+        <button
+          onClick={startTimer}
+          css={buttonStyle}
+          disabled={!currentSeconds}
+        >
           ▶ スタート
         </button>
       )}
@@ -28,36 +38,36 @@ const TimerController = ({ isRunning, currentSeconds, startTimer, pauseTimer, re
 };
 
 const controlAreaStyle = css({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  gap: '4px',
-  borderLeft: '1px solid #333',
-  padding: '0 0 0 16px',
-  height: '100%',
-  minWidth: '120px',
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  gap: "4px",
+  borderLeft: "1px solid #333",
+  padding: "0 0 0 16px",
+  height: "100%",
+  minWidth: "120px",
 });
 
 const buttonStyle = css({
-  all: 'unset',
-  borderRadius: '8px',
-  background: '#333',
-  color: '#EEE',
-  textAlign: 'center',
-  padding: '2px 6px',
-  minWidth: '16px',
-  minHeight: '16px',
-  fontSize: '1rem',
+  all: "unset",
+  borderRadius: "8px",
+  background: "#333",
+  color: "#EEE",
+  textAlign: "center",
+  padding: "2px 6px",
+  minWidth: "16px",
+  minHeight: "16px",
+  fontSize: "1rem",
 
-  '&:hover': {
-    opacity: '0.8',
-    cursor: 'pointer',
+  "&:hover": {
+    opacity: "0.8",
+    cursor: "pointer",
   },
 
-  '&:disabled': {
+  "&:disabled": {
     opacity: 1,
-    background: '#BBB',
-    cursor: 'default',
+    background: "#BBB",
+    cursor: "default",
   },
 });
 export default TimerController;

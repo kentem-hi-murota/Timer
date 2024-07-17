@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { css, keyframes } from '@emotion/react';
-import { TimerHead, TimerMain } from '../index';
-import { bellPlay, timeStringToNumber } from '../utils';
+import { useEffect, useState } from "react";
+import { css, keyframes } from "@emotion/react";
+import { TimerHead, TimerMain } from "../index";
+import { bellPlay, timeStringToNumber } from "../utils";
 
 const Timer = () => {
   const initialTime = 1200;
@@ -25,7 +25,10 @@ const Timer = () => {
       }
       if (!currentSeconds) setIsRunning(false);
       if (currentSeconds > 0) {
-        const timeoutId = setTimeout(() => setCurrentSeconds((prev) => prev - 1), 1000);
+        const timeoutId = setTimeout(
+          () => setCurrentSeconds((prev) => prev - 1),
+          1000
+        );
         return () => clearTimeout(timeoutId);
       }
     }
@@ -61,27 +64,31 @@ const Timer = () => {
           bellTimes={bellTimes}
           setBellTime={setBellTime}
         />
-        <TimerMain setTime={setTime} currentSeconds={currentSeconds} isRunning={isRunning} />
+        <TimerMain
+          setTime={setTime}
+          currentSeconds={currentSeconds}
+          isRunning={isRunning}
+        />
       </div>
     </>
   );
 };
 
 const blink = keyframes({
-  '0%': { opacity: 0.8 },
-  '100%': { opacity: 0 },
+  "0%": { opacity: 0.8 },
+  "100%": { opacity: 0 },
 });
 
 const notifyStyle = css({
-  position: 'absolute',
+  position: "absolute",
   top: 0,
   right: 0,
   left: 0,
   bottom: 0,
-  background: '#000',
+  background: "#000",
   animationName: blink,
-  animationDuration: '0.3s',
-  animationFillMode: 'forwards',
+  animationDuration: "0.3s",
+  animationFillMode: "forwards",
   animationIterationCount: 2,
 });
 

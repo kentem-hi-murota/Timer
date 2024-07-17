@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { css } from '@emotion/react';
-import { Input, SetTimeModal } from '../index';
-import { isMMSS, isNumber, timeNumberToString } from '../utils';
+import { useEffect, useState } from "react";
+import { css } from "@emotion/react";
+import { Input, SetTimeModal } from "../index";
+import { isMmssFormat, isNumber, timeNumberToString } from "../utils";
 
 interface Props {
   setTime: (inputTime: string) => void;
@@ -10,39 +10,39 @@ interface Props {
 }
 
 const TimerMain = ({ setTime, currentSeconds, isRunning }: Props) => {
-  const [title, setTitle] = useState<string>('KTC2024 Summer');
+  const [title, setTitle] = useState<string>("timer");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openInputModal = () => setIsModalOpen(true);
   const closeInputModal = () => setIsModalOpen(false);
 
-  const [modalInput, setModalInput] = useState<string>(() => timeNumberToString(currentSeconds));
-  const [isOK, setisOK] = useState<boolean>(false);
+  const [modalInput, setModalInput] = useState<string>(
+    timeNumberToString(currentSeconds)
+  );
+  const [isOK, setIsOK] = useState<boolean>(false);
 
   useEffect(() => {
     if (isOK) {
-      const input: HTMLInputElement | null = document.querySelector('#inputTime');
-      const inputTime: string = input?.value ?? '';
+      const input: HTMLInputElement | null =
+        document.querySelector("#inputTime");
+      const inputTime: string = input?.value ?? "";
       setTime(inputTime);
-      setisOK(false);
+      setIsOK(false);
       closeInputModal();
     }
   }, [isOK, setTime]);
 
-  const modalChangeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const modalChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const inputText: string = event.target.value;
-    if (isMMSS(inputText) || isNumber(inputText) || !inputText) {
+    if (isMmssFormat(inputText) || isNumber(inputText) || !inputText) {
       setModalInput(inputText);
     }
   };
 
-  const setCurrentSecondsToModalInput = (): void => {
+  const setCurrentSecondsToModalInput = (): void =>
     setModalInput(timeNumberToString(currentSeconds));
-  };
-
-  const okButtonHandler = () => {
-    setisOK(true);
-  };
 
   return (
     <>
@@ -51,7 +51,9 @@ const TimerMain = ({ setTime, currentSeconds, isRunning }: Props) => {
           type="text"
           name="title"
           value={title}
-          handleChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+          handleChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setTitle(e.target.value)
+          }
           styles={titleStyle}
         />
         <p onClick={!isRunning ? openInputModal : () => {}} css={timeStyle}>
@@ -63,7 +65,7 @@ const TimerMain = ({ setTime, currentSeconds, isRunning }: Props) => {
           modalInput={modalInput}
           initModalInput={setCurrentSecondsToModalInput}
           modalChangeHandler={modalChangeHandler}
-          okButtonHandler={okButtonHandler}
+          okButtonHandler={() => setIsOK(true)}
           closeInputModal={closeInputModal}
         />
       )}
@@ -72,28 +74,28 @@ const TimerMain = ({ setTime, currentSeconds, isRunning }: Props) => {
 };
 
 const mainStyle = css({
-  height: '85vh',
-  textAlign: 'center',
-  background: 'white',
+  height: "85vh",
+  textAlign: "center",
+  background: "white",
 });
 
 const titleStyle = css({
-  border: 'none',
-  fontSize: '80px',
-  textAlign: 'center',
-  margin: '24px 0',
-  width: '100%',
-  color: '#333',
+  border: "none",
+  fontSize: "80px",
+  textAlign: "center",
+  margin: "24px 0",
+  width: "100%",
+  color: "#333",
 });
 
 const timeStyle = css({
-  display: 'inline-block',
-  fontSize: '30vw',
-  textAlign: 'center',
-  lineHeight: '1',
-  userSelect: 'none',
-  margin: '0',
-  overflow: 'hidden',
+  display: "inline-block",
+  fontSize: "30vw",
+  textAlign: "center",
+  lineHeight: "1",
+  userSelect: "none",
+  margin: "0",
+  overflow: "hidden",
 });
 
 export default TimerMain;

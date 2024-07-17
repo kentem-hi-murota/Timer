@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
-import { Modal, Input } from '../index';
-import { useEffect } from 'react';
+import { css } from "@emotion/react";
+import { Modal, Input } from "../index";
+import { useEffect } from "react";
 
 interface Props {
   modalInput: string;
@@ -10,7 +10,13 @@ interface Props {
   closeInputModal: () => void;
 }
 
-const SetTimeModal = ({ modalInput, initModalInput, modalChangeHandler, okButtonHandler, closeInputModal }: Props) => {
+const SetTimeModal = ({
+  modalInput,
+  initModalInput,
+  modalChangeHandler,
+  okButtonHandler,
+  closeInputModal,
+}: Props) => {
   useEffect(() => {
     initModalInput();
   }, []);
@@ -41,34 +47,34 @@ const SetTimeModal = ({ modalInput, initModalInput, modalChangeHandler, okButton
 };
 
 const h2Style = css({
-  margin: '0',
+  margin: "0",
 });
 
 const paragraphStyle = css({
-  margin: '8px 0 0 0',
+  margin: "8px 0 0 0",
 });
 
 const inputStyle = css({
-  marginTop: '8px',
+  marginTop: "8px",
 });
 
 const buttonAreaStyle = css({
-  textAlign: 'right',
-  marginTop: '8px',
+  textAlign: "right",
+  marginTop: "8px",
 });
 
 const buttonStyle = css({
-  all: 'unset',
-  borderRadius: '8px',
-  background: '#333',
-  color: '#EEE',
-  textAlign: 'center',
-  padding: '4px 12px',
-  margin: '0 8px',
+  all: "unset",
+  borderRadius: "8px",
+  background: "#333",
+  color: "#EEE",
+  textAlign: "center",
+  padding: "4px 12px",
+  margin: "0 8px",
 
-  '&:hover': {
-    opacity: '0.8',
-    cursor: 'pointer',
+  "&:hover": {
+    opacity: "0.8",
+    cursor: "pointer",
   },
 });
 export default SetTimeModal;

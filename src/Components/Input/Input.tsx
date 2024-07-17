@@ -1,4 +1,4 @@
-import { SerializedStyles } from '@emotion/react';
+import { SerializedStyles } from "@emotion/react";
 
 interface Props {
   type: string;
@@ -32,7 +32,7 @@ const Input: React.FC<Props> = ({
   return (
     <div>
       <label>
-        {type !== 'radio' && label}
+        {type !== "radio" && label}
         <input
           type={type}
           name={name}
@@ -46,7 +46,7 @@ const Input: React.FC<Props> = ({
           onFocus={handleOnFocus}
           css={styles}
         />
-        {type === 'radio' && label}
+        {type === "radio" && label}
       </label>
     </div>
   );

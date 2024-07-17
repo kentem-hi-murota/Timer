@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { css } from '@emotion/react';
-import { BellSetter, ModeSelector, TimerController } from '../index';
-import { isMMSS, isNumber, timeStringToNumber } from '../utils';
+import { useState } from "react";
+import { css } from "@emotion/react";
+import { BellSetter, ModeSelector, TimerController } from "../index";
+import { isMmssFormat, isNumber, timeStringToNumber } from "../utils";
 
 interface Props {
   isRunning: boolean;
@@ -42,7 +42,7 @@ const TimerHead = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const inputText: string = event.target.value;
     const inputOrder: number = Number(event.target.name.charAt(0)) - 1;
-    if (isMMSS(inputText) || isNumber(inputText) || !inputText) {
+    if (isMmssFormat(inputText) || isNumber(inputText) || !inputText) {
       setCurrentBellInput({ index: inputOrder, time: inputText });
     }
   };
@@ -51,11 +51,11 @@ const TimerHead = ({
   const handleBlur = () => {
     if (currentBellInput) {
       const inputNumberBell: number = timeStringToNumber(currentBellInput.time);
-      const newBellTimes = bellTimes.map((belltime, index) => {
-        return index === currentBellInput.index ? inputNumberBell : belltime;
-      });
+      const newBellTimes = bellTimes.map((bellTime, index) =>
+        index === currentBellInput.index ? inputNumberBell : bellTime
+      );
       setBellTime(newBellTimes.sort((a, b) => b - a));
-      setCurrentBellInput({ index: -1, time: '' });
+      setCurrentBellInput({ index: -1, time: "" });
     }
   };
 
@@ -81,11 +81,11 @@ const TimerHead = ({
 };
 
 const headerStyle = css({
-  background: '#FDD000',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '16px',
-  height: '15vh',
+  background: "#FDD000",
+  display: "flex",
+  alignItems: "center",
+  gap: "16px",
+  height: "15vh",
 });
 
 export default TimerHead;

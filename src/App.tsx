@@ -1,5 +1,5 @@
-import { css, Global } from '@emotion/react';
-import { Timer } from './Components';
+import { css, Global } from "@emotion/react";
+import { Timer } from "./Components";
 
 const App = () => {
   return (
@@ -15,8 +15,8 @@ const bodyStyle = css({
     margin: 0,
   },
 
-  '*': {
-    boxSizing: 'border-box',
+  "*": {
+    boxSizing: "border-box",
   },
 });
 
