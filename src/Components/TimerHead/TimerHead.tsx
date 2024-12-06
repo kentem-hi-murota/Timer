@@ -2,6 +2,7 @@ import { useState } from "react";
 import { css } from "@emotion/react";
 import { BellSetter, ModeSelector, TimerController } from "../index";
 import { isMmssFormat, isNumber, timeStringToNumber } from "../utils";
+import { SoundSelector } from "../SoundSelector";
 
 interface Props {
   isRunning: boolean;
@@ -76,6 +77,7 @@ const TimerHead = ({
         handleChange={handleChange}
         handleBlur={handleBlur}
       />
+      <SoundSelector />
     </header>
   );
 };
