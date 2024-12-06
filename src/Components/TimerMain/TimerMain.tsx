@@ -86,6 +86,7 @@ const timeStyle = css({
   userSelect: "none",
   margin: "0",
   overflow: "hidden",
+  ":hover": { cursor: "pointer" },
 });
 
 export default TimerMain;
