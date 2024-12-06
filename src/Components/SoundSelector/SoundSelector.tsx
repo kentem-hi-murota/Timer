@@ -1,21 +1,24 @@
 import { css } from "@emotion/react";
-import { bellPlay } from "../utils";
+import { bellPlay, bellTypes } from "../utils";
+import { Dispatch } from "react";
 
-const SoundSelector = () => {
+interface SoundSelectorProps {
+  bellType: string;
+  setBellType: Dispatch<React.SetStateAction<string>>;
+}
+
+const SoundSelector = ({ bellType, setBellType }: SoundSelectorProps) => {
   return (
     <div css={soundSelectorStyle}>
       <label>
         音声を選択：
-        <select>
-          <option value="">はと</option>
-          <option value="">ドラム缶</option>
-          <option value="">チン</option>
-          <option value="">ねこ</option>
-          <option value="">爆発1</option>
-          <option value="">爆発2</option>
+        <select value={bellType} onChange={(e) => setBellType(e.target.value)}>
+          {bellTypes.map((bellType) => (
+            <option value={bellType}>{bellType}</option>
+          ))}
         </select>
       </label>
-      <button onClick={bellPlay} css={bellPlayButtonStyle}>
+      <button onClick={() => bellPlay(bellType)} css={bellPlayButtonStyle}>
         ベル再生
       </button>
     </div>
@@ -34,7 +37,8 @@ const bellPlayButtonStyle = css({
   width: "50%",
   color: "white",
   backgroundColor: "#333",
-  border: "1px solid black",
+  border: "none",
+  ":hover": { cursor: "pointer", opacity: "0.7" },
 });
 
 export default SoundSelector;

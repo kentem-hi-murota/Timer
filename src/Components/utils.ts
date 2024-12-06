@@ -8,12 +8,22 @@ export const isNumber = (input: string): boolean => {
   return regexSeconds.test(input);
 };
 
-export const bellPlay = async () => {
-  // const audio = new Audio('sounds/爆発2.mp3');
-  const audio = new Audio("sounds/鳩時計2.mp3");
+/// https://soundeffect-lab.info
+export const bellTypes = [
+  "鳩時計2",
+  "ドラム缶が倒れる",
+  "電子レンジでチン",
+  "猫の鳴き声1",
+  "爆発1",
+  "爆発2",
+  "オオカミの遠吠え",
+  "決定ボタンを押す29",
+];
+
+export const bellPlay = async (bellType: string) => {
+  const audio = new Audio(`sounds/${bellType}.mp3`);
   await audio.play();
 };
-/// https://soundeffect-lab.info
 
 export const timeStringToNumber = (inputTime: string): number => {
   const maxSeconds = 5999;

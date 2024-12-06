@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, useState } from "react";
 import { css } from "@emotion/react";
 import { BellSetter, ModeSelector, TimerController } from "../index";
 import { isMmssFormat, isNumber, timeStringToNumber } from "../utils";
@@ -12,6 +12,8 @@ interface Props {
   resetTimer: () => void;
   bellTimes: number[];
   setBellTime: (newBellTime: number[]) => void;
+  bellType: string;
+  setBellType: Dispatch<React.SetStateAction<string>>;
 }
 
 const TimerHead = ({
@@ -22,6 +24,8 @@ const TimerHead = ({
   resetTimer,
   bellTimes,
   setBellTime,
+  bellType,
+  setBellType,
 }: Props) => {
   /// 入力中のベル時間のフォーム情報
   const [currentBellInput, setCurrentBellInput] = useState<{
@@ -77,7 +81,7 @@ const TimerHead = ({
         handleChange={handleChange}
         handleBlur={handleBlur}
       />
-      <SoundSelector />
+      <SoundSelector bellType={bellType} setBellType={setBellType} />
     </header>
   );
 };

@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import { css, keyframes } from "@emotion/react";
 import { TimerHead, TimerMain } from "../index";
-import { bellPlay, timeStringToNumber } from "../utils";
+import { bellPlay, bellTypes, timeStringToNumber } from "../utils";
 
 const Timer = () => {
   const initialTime = 1200;
   const [bellTimes, setBellTimes] = useState<number[]>([600, 300, 180, 60, 0]);
   const [currentSeconds, setCurrentSeconds] = useState<number>(initialTime);
+  const [bellType, setBellType] = useState(bellTypes[0]);
   const [isNotify, setIsNotify] = useState<boolean>(false);
   const [isRunning, setIsRunning] = useState<boolean>(false);
 
   useEffect(() => {
     const timerHandler = () => {
-      bellPlay();
+      bellPlay(bellType);
       setIsNotify(true);
       setTimeout(() => {
         setIsNotify(false);
@@ -32,7 +33,7 @@ const Timer = () => {
         return () => clearTimeout(timeoutId);
       }
     }
-  }, [currentSeconds, isRunning, bellTimes]);
+  }, [currentSeconds, isRunning, bellTimes, bellType]);
 
   const startTimer = () => setIsRunning(true);
   const pauseTimer = () => setIsRunning(false);
@@ -61,6 +62,8 @@ const Timer = () => {
         resetTimer={resetTimer}
         bellTimes={bellTimes}
         setBellTime={setBellTime}
+        bellType={bellType}
+        setBellType={setBellType}
       />
       <TimerMain
         setTime={setTime}
