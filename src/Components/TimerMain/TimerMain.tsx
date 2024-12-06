@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { css } from "@emotion/react";
 import { Input, SetTimeModal } from "../index";
 import { isMmssFormat, isNumber, timeNumberToString } from "../utils";
@@ -12,25 +12,12 @@ interface Props {
 const TimerMain = ({ setTime, currentSeconds, isRunning }: Props) => {
   const [title, setTitle] = useState<string>("timer");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  const openInputModal = () => setIsModalOpen(true);
-  const closeInputModal = () => setIsModalOpen(false);
-
   const [modalInput, setModalInput] = useState<string>(
     timeNumberToString(currentSeconds)
   );
-  const [isOK, setIsOK] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (isOK) {
-      const input: HTMLInputElement | null =
-        document.querySelector("#inputTime");
-      const inputTime: string = input?.value ?? "";
-      setTime(inputTime);
-      setIsOK(false);
-      closeInputModal();
-    }
-  }, [isOK, setTime]);
+  const openInputModal = () => setIsModalOpen(true);
+  const closeInputModal = () => setIsModalOpen(false);
 
   const modalChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -65,7 +52,10 @@ const TimerMain = ({ setTime, currentSeconds, isRunning }: Props) => {
           modalInput={modalInput}
           initModalInput={setCurrentSecondsToModalInput}
           modalChangeHandler={modalChangeHandler}
-          okButtonHandler={() => setIsOK(true)}
+          okButtonHandler={() => {
+            setTime(modalInput);
+            closeInputModal();
+          }}
           closeInputModal={closeInputModal}
         />
       )}

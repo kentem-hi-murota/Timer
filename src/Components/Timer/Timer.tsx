@@ -5,10 +5,10 @@ import { bellPlay, timeStringToNumber } from "../utils";
 
 const Timer = () => {
   const initialTime = 1200;
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-  const [isNotify, setIsNotify] = useState<boolean>(false);
-  const [currentSeconds, setCurrentSeconds] = useState<number>(initialTime);
   const [bellTimes, setBellTimes] = useState<number[]>([600, 300, 180, 60, 0]);
+  const [currentSeconds, setCurrentSeconds] = useState<number>(initialTime);
+  const [isNotify, setIsNotify] = useState<boolean>(false);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
 
   useEffect(() => {
     const timerHandler = () => {
@@ -47,29 +47,26 @@ const Timer = () => {
     setCurrentSeconds(inputSeconds);
   };
 
-  const setBellTime = (newBellTimes: number[]): void => {
+  const setBellTime = (newBellTimes: number[]): void =>
     setBellTimes([...newBellTimes]);
-  };
 
   return (
     <>
       {isNotify && <div css={notifyStyle}></div>}
-      <div>
-        <TimerHead
-          isRunning={isRunning}
-          currentSeconds={currentSeconds}
-          startTimer={startTimer}
-          pauseTimer={pauseTimer}
-          resetTimer={resetTimer}
-          bellTimes={bellTimes}
-          setBellTime={setBellTime}
-        />
-        <TimerMain
-          setTime={setTime}
-          currentSeconds={currentSeconds}
-          isRunning={isRunning}
-        />
-      </div>
+      <TimerHead
+        isRunning={isRunning}
+        currentSeconds={currentSeconds}
+        startTimer={startTimer}
+        pauseTimer={pauseTimer}
+        resetTimer={resetTimer}
+        bellTimes={bellTimes}
+        setBellTime={setBellTime}
+      />
+      <TimerMain
+        setTime={setTime}
+        currentSeconds={currentSeconds}
+        isRunning={isRunning}
+      />
     </>
   );
 };

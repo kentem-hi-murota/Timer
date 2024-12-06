@@ -13,19 +13,15 @@ const Modal = ({ children }: Props) => {
 };
 
 const modalStyle = css({
-  position: "absolute",
-  top: "0",
-  right: "0",
-  left: "0",
-  bottom: "0",
+  position: "fixed",
+  inset: "0",
   background: "rgba(0,0,0,0.6)",
 });
 
 const modalContentStyle = css({
-  position: "absolute",
-  top: "12%",
-  right: "25%",
-  left: "25%",
+  position: "fixed",
+  top: "15%",
+  insetInline: "25%",
   width: "50%",
   background: "white",
   borderRadius: "16px",
