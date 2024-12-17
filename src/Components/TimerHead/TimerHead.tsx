@@ -14,6 +14,7 @@ interface Props {
   setBellTime: (newBellTime: number[]) => void;
   bellType: string;
   setBellType: Dispatch<React.SetStateAction<string>>;
+  setPreset: (preset: "short" | "long") => void;
 }
 
 const TimerHead = ({
@@ -26,6 +27,7 @@ const TimerHead = ({
   setBellTime,
   bellType,
   setBellType,
+  setPreset,
 }: Props) => {
   /// 入力中のベル時間のフォーム情報
   const [currentBellInput, setCurrentBellInput] = useState<{
@@ -74,14 +76,35 @@ const TimerHead = ({
         pauseTimer={pauseTimer}
         resetTimer={resetTimer}
       />
-      <BellSetter
-        bellTimes={bellTimes}
-        currentBellInput={currentBellInput}
-        handleOnFocus={handleOnFocus}
-        handleChange={handleChange}
-        handleBlur={handleBlur}
-      />
-      <SoundSelector bellType={bellType} setBellType={setBellType} />
+      <div
+        css={css({
+          borderLeft: "1px solid #333",
+          height: "100%",
+          padding: "8px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          justifyContent: "center",
+        })}
+      >
+        <BellSetter
+          bellTimes={bellTimes}
+          currentBellInput={currentBellInput}
+          handleOnFocus={handleOnFocus}
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+        />
+        <div css={css({ display: "flex", gap: "8px", alignItems: "center" })}>
+          発表時間：
+          <button css={buttonStyle} onClick={() => setPreset("long")}>
+            20分
+          </button>
+          <button css={buttonStyle} onClick={() => setPreset("short")}>
+            10分
+          </button>
+        </div>
+      </div>
+      {/* <SoundSelector bellType={bellType} setBellType={setBellType} /> */}
     </header>
   );
 };
@@ -92,6 +115,31 @@ const headerStyle = css({
   alignItems: "center",
   gap: "16px",
   height: "15vh",
+});
+
+const buttonStyle = css({
+  all: "unset",
+  borderRadius: "8px",
+  background: "#333",
+  color: "#EEE",
+  textAlign: "center",
+  padding: "2px 6px",
+  minWidth: "16px",
+  minHeight: "16px",
+  fontSize: "1rem",
+  width: "120px",
+  height: "28px",
+
+  "&:hover": {
+    opacity: "0.8",
+    cursor: "pointer",
+  },
+
+  "&:disabled": {
+    opacity: 1,
+    background: "#BBB",
+    cursor: "default",
+  },
 });
 
 export default TimerHead;
