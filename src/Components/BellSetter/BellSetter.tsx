@@ -58,9 +58,6 @@ const bellAreaStyle = css({
   alignItems: "center",
   textAlign: "center",
   gap: "8px",
-  borderLeft: "1px solid #333",
-  padding: "0 8px",
-  height: "100%",
   fontSize: "20px",
 });
 
