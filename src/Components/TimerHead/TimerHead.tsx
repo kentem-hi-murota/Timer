@@ -2,7 +2,7 @@ import { Dispatch, useState } from "react";
 import { css } from "@emotion/react";
 import { BellSetter, ModeSelector, TimerController } from "../index";
 import { isMmssFormat, isNumber, timeStringToNumber } from "../utils";
-import { SoundSelector } from "../SoundSelector";
+// import { SoundSelector } from "../SoundSelector";
 
 interface Props {
   isRunning: boolean;
@@ -25,8 +25,8 @@ const TimerHead = ({
   resetTimer,
   bellTimes,
   setBellTime,
-  bellType,
-  setBellType,
+  // bellType,
+  // setBellType,
   setPreset,
 }: Props) => {
   /// 入力中のベル時間のフォーム情報
