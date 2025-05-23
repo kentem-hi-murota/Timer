@@ -1,4 +1,5 @@
 import { SerializedStyles } from "@emotion/react";
+import { KeyboardEventHandler } from "react";
 
 interface Props {
   type: string;
@@ -12,6 +13,7 @@ interface Props {
   handleClick?: () => void;
   handleBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   handleOnFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  handleKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   styles?: SerializedStyles;
 }
 
@@ -27,6 +29,7 @@ const Input: React.FC<Props> = ({
   handleClick,
   handleBlur,
   handleOnFocus,
+  handleKeyDown,
   styles,
 }: Props) => {
   return (
@@ -44,6 +47,7 @@ const Input: React.FC<Props> = ({
           onClick={handleClick}
           onBlur={handleBlur}
           onFocus={handleOnFocus}
+          onKeyDown={handleKeyDown}
           css={styles}
         />
         {type === "radio" && label}

@@ -31,6 +31,7 @@ const SetTimeModal = ({
         value={modalInput}
         label="時間 : "
         handleChange={modalChangeHandler}
+        handleKeyDown={(e) => e.key === "Enter" && okButtonHandler()}
         id="inputTime"
         styles={inputStyle}
       />
