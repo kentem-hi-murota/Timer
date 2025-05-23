@@ -94,15 +94,6 @@ const TimerHead = ({
           handleChange={handleChange}
           handleBlur={handleBlur}
         />
-        <div css={css({ display: "flex", gap: "8px", alignItems: "center" })}>
-          発表時間：
-          <button css={buttonStyle} onClick={() => setPreset("long")}>
-            20分
-          </button>
-          <button css={buttonStyle} onClick={() => setPreset("short")}>
-            10分
-          </button>
-        </div>
       </div>
       {/* <SoundSelector bellType={bellType} setBellType={setBellType} /> */}
     </header>
