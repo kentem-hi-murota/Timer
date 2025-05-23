@@ -10,7 +10,7 @@ const PRESET = {
 
 const Timer = () => {
   const initialTime = 1200;
-  const [bellTimes, setBellTimes] = useState<number[]>([600, 300, 60, 0]);
+  const [bellTimes, setBellTimes] = useState<number[]>([600, 300, 180, 60, 0]);
   const [currentSeconds, setCurrentSeconds] = useState<number>(initialTime);
   const [bellType, setBellType] = useState(bellTypes[0]);
   const [isNotify, setIsNotify] = useState<boolean>(false);
