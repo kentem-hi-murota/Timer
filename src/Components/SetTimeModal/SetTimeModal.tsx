@@ -24,7 +24,7 @@ const SetTimeModal = ({
   return (
     <Modal>
       <h2 css={h2Style}>タイマーの時間を入力</h2>
-      <p css={paragraphStyle}>形式：'分:秒' または 秒数</p>
+      <p css={paragraphStyle}>形式：'mm:ss' または 秒数</p>
       <Input
         name="time"
         type="text"
